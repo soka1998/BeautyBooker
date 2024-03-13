@@ -9,4 +9,5 @@ const staffSchema = new Schema({
   phone: String,
 });
 
-module.exports = mongoose.model('Staff', staffSchema);
+const Staff = mongoose.model('Staff', staffSchema);
+export default Staff
