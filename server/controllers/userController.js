@@ -1,8 +1,12 @@
 import User from "../models/User.js";
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
+import dotenv  from 'dotenv'
 
-const maxAge = 3 * 24 * 60 * 60; // 3 days in seconds
+
+dotenv.config()
+
+const maxAge = 24 * 60 * 60; // 24 hours in seconds
 
 const createToken = (id) => {
     return jwt.sign({ id }, process.env.SECRET_KEY, {
@@ -27,6 +31,11 @@ const handleErrors = (err) => {
     return errors;
 };
 
+// Function to generate JWT
+const generateToken = (userId) => {
+    return jwt.sign({ id: userId }, process.env.SECRET_KEY, { expiresIn: '24h' });
+  }; 
+
 export const registerUser = async (req, res) => {
     const { name, email, password, role, phone } = req.body;
     const salt = await bcrypt.genSalt(10);
@@ -45,18 +54,34 @@ export const registerUser = async (req, res) => {
 
 export const loginUser = async (req, res) => {
     const { email, password } = req.body;
+
     try {
         const user = await User.findOne({ email });
         if (!user) {
             return res.status(400).json({ msg: 'Invalid Credentials' });
         }
+
         const isMatch = await bcrypt.compare(password, user.password);
         if (!isMatch) {
             return res.status(400).json({ msg: 'Invalid Credentials' });
         }
-        const token = createToken(user._id);
+
+        const token = generateToken(user._id); // Adjusted to use generateToken
+
+        // Example: Sending the token in a cookie
         res.cookie('jwt', token, { httpOnly: true, maxAge: maxAge * 1000 });
-        res.status(200).json({ user: user._id });
+
+        // Example: Including the token in the response body along with user details
+        res.status(200).json({
+            msg: "Login successful",
+            user: {
+                id: user._id,
+                name: user.name,
+                email: user.email,
+                role: user.role,
+            },
+            token // Send the token back to the client
+        });
     } catch (err) {
         res.status(400).json({ errors: 'An error occurred' });
     }
