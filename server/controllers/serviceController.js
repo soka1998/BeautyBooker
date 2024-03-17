@@ -79,6 +79,6 @@ export const deleteService = async (req, res) => {
 
 //Final Notes
 // This controller assumes you have a working Mongoose model for your services (Service.js)
-//  and that your staff authentication and authorization logic 
-// is in place to protect these endpoints. Adjust the error handling and functionality 
+//  and that your staff authentication and authorization logic
+// is in place to protect these endpoints. Adjust the error handling and functionality
 // according to your specific project requirements and security practices.
