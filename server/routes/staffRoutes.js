@@ -6,11 +6,11 @@ const staffRoutes = express.Router();
 
 
 
-staffRoutes.get('/',authMiddleware, getAllStaff);
-staffRoutes.get('/:staffId',authMiddleware, getStaffById);
-staffRoutes.post('/',authMiddleware, addStaff);
-staffRoutes.put('/:staffId/schedule',authMiddleware, updateStaffSchedule);
-staffRoutes.delete('/:staffId', authMiddleware,removeStaff);
+staffRoutes.get('/', getAllStaff);
+staffRoutes.get('/:staffId', getStaffById);
+staffRoutes.post('/', addStaff);
+staffRoutes.put('/:staffId', updateStaffSchedule);
+staffRoutes.delete('/:staffId', removeStaff);
 
 
 
