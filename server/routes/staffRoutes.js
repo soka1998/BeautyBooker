@@ -1,6 +1,6 @@
 import express from 'express';
 import { addStaff, getAllStaff, getStaffById, removeStaff, updateStaffSchedule } from '../controllers/staffController.js';
-import authMiddleware from '../middleware/authMiddleware.js';
+import requireAuth from '../middleware/authMiddleware.js';
 
 const staffRoutes = express.Router();
 
@@ -8,9 +8,9 @@ const staffRoutes = express.Router();
 
 staffRoutes.get('/', getAllStaff);
 staffRoutes.get('/:staffId', getStaffById);
-staffRoutes.post('/', addStaff);
-staffRoutes.put('/:staffId', updateStaffSchedule);
-staffRoutes.delete('/:staffId', removeStaff);
+staffRoutes.post('/', requireAuth ,addStaff);
+staffRoutes.put('/:staffId',requireAuth , updateStaffSchedule);
+staffRoutes.delete('/:staffId', requireAuth ,removeStaff);
 
 
 
