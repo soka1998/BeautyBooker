@@ -9,7 +9,7 @@ const staffRoutes = express.Router();
 staffRoutes.get('/', getAllStaff);
 staffRoutes.get('/:staffId', getStaffById);
 staffRoutes.post('/', addStaff);
-staffRoutes.put('/:staffId/schedule', updateStaffSchedule);
+staffRoutes.put('/:staffId', updateStaffSchedule);
 staffRoutes.delete('/:staffId', removeStaff);
 
 

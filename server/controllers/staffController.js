@@ -1,17 +1,19 @@
 import Staff from "../models/Staff.js"
 import Service from "../models/Service.js";
 import mongoose from "mongoose";
+import User from "../models/User.js";
+import bcrypt from  'bcrypt';
 
 
 
 //Get all staff members 
 export const getAllStaff = async (req, res) => {
     try {
-        const staffMembers = await Staff.find({});
+        const staffMembers = await Staff.find({}).populate("userId",'-password')
         res.status(200).json(staffMembers);
 
     } catch (error) {
-        res.status(400).json({ error: err.message })
+        res.status(400).json({ error: error.message })
 
     }
 };
@@ -20,7 +22,7 @@ export const getAllStaff = async (req, res) => {
 export const getStaffById = async (req, res) => {
     const { staffId } = req.params;
     try {
-        const staffMember = await Staff.findById(staffId);
+        const staffMember = await Staff.findById(staffId).populate('userId','-password')
         if (!staffMember) {
             return res.status(404).json("No staff with this id")
         }
@@ -32,8 +34,17 @@ export const getStaffById = async (req, res) => {
 
 //Add new staff member 
 export const addStaff = async (req, res) => {
-    const { name, services, schedule, email, phone } = req.body;
+    const { name, services, schedule, email, phone , password} = req.body;
     try {
+        const existingUser= await User.findOne( {email});
+        if(existingUser){
+            return res.status(400).json({message:"User with this email already exists"});
+        }
+    // Hash the password
+     const salt = await bcrypt.genSalt(10);
+     const passwordHashed =await bcrypt.hash(password, salt);
+
+        const newUser = await  User.create({email,name, password:passwordHashed, role:"STAFF"})
 
         // Enhanced Validation: Check if service IDs are valid ObjectIds
         services.forEach(serviceId => {
@@ -59,6 +70,7 @@ export const addStaff = async (req, res) => {
             schedule,
             email,
             phone,
+            userId: newUser._id 
         })
         res.status(201).json({ message: "Staff added successfully!", staff: newStaff });
 
@@ -80,11 +92,10 @@ export const updateStaffSchedule = async (req, res) => {
             return res.status(404).json({ message: "Staff not found" });
 
         }
-        res.status(200).json({ message: "Staff not found" });
 
         res.status(200).json({ message: "Staff schedule updated successfully !", staff: updatedStaff });
     } catch (error) {
-        res.status(400).json({ error: err.message })
+        res.status(400).json({ error: error.message })
 
     }
 }
@@ -95,9 +106,9 @@ export const removeStaff = async (req, res) => {
     try {
         const staffToDelete = await Staff.findByIdAndDelete(staffId);
         if (!staffToDelete) {
-            return res.status(404).json({ message: "Staff is not found!" });
+            return res.status(404).json({ message: "Staff  not found!" });
         }
-        res.status(200).json('message- :"Staff removed successfully')
+        res.status(200).json({message :"Staff removed successfully"});
     } catch (error) {
         res.status(400).json({ error: err.message })
 

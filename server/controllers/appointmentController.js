@@ -73,3 +73,4 @@ export const rescheduleAppointment = async (req, res) => {
         res.status(400).json({ errors });
     }
 };
+//get schedule qppoint;ent by staff id

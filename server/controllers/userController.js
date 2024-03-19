@@ -2,6 +2,7 @@ import User from "../models/User.js";
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 
+
 const maxAge = 3 * 24 * 60 * 60; // 3 days in seconds
 
 const createToken = (id) => {
