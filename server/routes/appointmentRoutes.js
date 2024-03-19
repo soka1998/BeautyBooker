@@ -3,6 +3,9 @@ import { bookAppointment, cancelAppointment, rescheduleAppointment } from '../co
 
 const appointmentRoutes = express.Router()
 
+
+appointmentRoutes.get('/staff/:staffId', requireAuth, getAppointmentsByStaffId);
+
 appointmentRoutes.post('/',requireAuth ,bookAppointment)
 appointmentRoutes.patch('/:appointmentId/cancel',cancelAppointment)
 appointmentRoutes.patch('/:appointmentId/reschedule',rescheduleAppointment)
