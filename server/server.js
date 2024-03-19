@@ -1,11 +1,13 @@
 
 import dotenv from "dotenv";
 import mongoose from "mongoose";
-import express from 'express'
+import express from 'express';
+import cookieParser from "cookie-parser";
 import userRoutes from "./routes/userRoutes.js";
 import appointmentRoutes from "./routes/appointmentRoutes.js";
 import serviceRoute from "./routes/serviceRoutes.js";
 import staffRoutes from "./routes/staffRoutes.js";
+import requireAuth from "./middleware/authMiddleware.js";
 
 dotenv.config();
 const app = express();
@@ -31,8 +33,9 @@ connectDB();
 
 
 
-
+app.use(cookieParser())
 app.use(express.json());
+app.use(requireAuth)
 
 // Define your routes here
 app.use('/api/users', userRoutes);
