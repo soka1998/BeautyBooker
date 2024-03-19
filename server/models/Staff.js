@@ -7,6 +7,13 @@ const staffSchema = new Schema({
   schedule: String,
   email: { type: String, required: true, unique: true },
   phone: String,
+  // userid
+  userId: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
+    unique:true,
+    required: true
+}]
 });
 
 const Staff = mongoose.model('Staff', staffSchema);
