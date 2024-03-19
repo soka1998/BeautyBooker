@@ -73,4 +73,19 @@ export const rescheduleAppointment = async (req, res) => {
         res.status(400).json({ errors });
     }
 };
-//get schedule qppoint;ent by staff id
+
+
+// Get all appointments by a specific staff ID
+export const getAppointmentsByStaffId = async (req, res) => {
+    const { staffId } = req.params; // Assuming the staff ID is passed as a URL parameter
+    try {
+        const appointments = await Appointment.find({ staffId }); // Find appointments by staffId
+        if (appointments.length === 0) {
+            return res.status(404).json({ message: "No appointments found for this staff member." });
+        }
+        res.status(200).json(appointments);
+    } catch (err) {
+        const errors = handleErrors(err);
+        res.status(400).json({ errors });
+    }
+};
