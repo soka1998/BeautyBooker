@@ -1,5 +1,6 @@
 import express from 'express';
-import { bookAppointment, cancelAppointment, rescheduleAppointment } from '../controllers/appointmentController.js';
+import { bookAppointment, cancelAppointment, getAppointmentsByStaffId, rescheduleAppointment } from '../controllers/appointmentController.js';
+import requireAuth from '../middleware/authMiddleware.js';
 
 const appointmentRoutes = express.Router()
 
