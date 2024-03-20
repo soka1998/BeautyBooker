@@ -8,6 +8,8 @@ import appointmentRoutes from "./routes/appointmentRoutes.js";
 import serviceRoute from "./routes/serviceRoutes.js";
 import staffRoutes from "./routes/staffRoutes.js";
 import requireAuth from "./middleware/authMiddleware.js";
+import requireAdmin from "./middleware/adminMiddleware.js"; // Import the admin middleware
+
 
 dotenv.config();
 const app = express();
@@ -35,16 +37,20 @@ connectDB();
 
 app.use(cookieParser())
 app.use(express.json());
-app.use(requireAuth)
+// app.use(requireAuth)
+// app.use(requireAdmin)
 
 // Define your routes here
 app.use('/api/users', userRoutes);
 // app.use('api/users',userRoutes)
-app.use('/api/appointments', appointmentRoutes);
+app.use('/api/appointments', requireAuth,appointmentRoutes);
 
-app.use('/api/services', serviceRoute);
+app.use('/api/services',requireAuth, serviceRoute);
 
-app.use('/api/staff',staffRoutes)
+app.use('/api/staff',requireAdmin,requireAuth,staffRoutes)
+
+// router.get('/admin/dashboard', requireAuth, requireAdmin, adminDashboard);
+
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
