@@ -12,7 +12,7 @@ function App() {
      <NavBar/>
      <LandingPage/>
      <HeroPage/>
-   
+  
     </>
   );
 }

@@ -1,5 +1,5 @@
 import React from "react";
-import Herohome from "../assets/herohome.png"; // Adjust the path as necessary
+import beautyhome from "../assets/beautyhome.png"; // Adjust the path as necessar
 
 const LandingPage = () => {
   return (
@@ -9,11 +9,11 @@ const LandingPage = () => {
           <div className="container mx-auto lg:flex">
             <div className="text-center lg:text-left lg:w-1/2">
               <h1 className="text-4xl lg:text-5xl xl:text-6xl font-bold leading-none">
-                Main title of your landing page
+              Book Quick, Save Time
               </h1>
               <p className="text-xl lg:text-2xl mt-6 font-light">
-                Free landing page template to promote your business startup and
-                generate leads for the offered services
+                Book appointments easily, save time, and increase your earnings
+                with our app
               </p>
               <p className="mt-8 md:mt-12">
                 <button
@@ -27,8 +27,12 @@ const LandingPage = () => {
                 Sed fermentum felis ut cursus
               </p>
             </div>
-            <div className="lg:w-2/3 xl:w-3/4 flex justify-end items-center" >
-                            <img src={Herohome} alt="Hero Home" className="max-w-xs md:max-w-sm lg:w-lg xl:max-w-xl" />
+            <div className="lg:w-2/3 xl:w-3/4 flex justify-end items-center">
+              <img
+                src={beautyhome}
+                alt="Hero Home"
+                className="max-w-xs md:max-w-sm lg:w-lg xl:max-w-xl "
+              />
             </div>
           </div>
         </section>
