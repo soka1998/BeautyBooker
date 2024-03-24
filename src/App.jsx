@@ -1,19 +1,33 @@
 
 import "./App.css";
 import HeroPage from "./components/HeroPage";
-import LandingPage from "./components/LandingPage";
 import NavBar from "./components/NavBar";
+import Services from "./components/Services";
+import Home from "./components/Home"
+import background from './assets/background.png';
+import { BrowserRouter as Router } from 'react-router-dom';
 
 
 
 function App() {
   return (
-    <>
+   <Router>
+    <div
+      style={{
+        backgroundImage: `url(${background})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center center",
+        backgroundRepeat: "no-repeat",
+        minHeight: "100vh",
+      }}
+    >
      <NavBar/>
-     <LandingPage/>
-     <HeroPage/>
+     <Home/>
+     <Services/>
+     </div>
+     {/* <HeroPage/> */}
   
-    </>
+    </Router>
   );
 }
 
