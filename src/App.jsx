@@ -6,6 +6,7 @@ import Services from "./components/Services";
 import Home from "./components/Home"
 import background from './assets/background.png';
 import { BrowserRouter as Router } from 'react-router-dom';
+import AboutUs from "./components/AboutUs";
 
 
 
@@ -24,6 +25,7 @@ function App() {
      <NavBar/>
      <Home/>
      <Services/>
+     <AboutUs/>
      </div>
      {/* <HeroPage/> */}
   
