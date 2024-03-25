@@ -60,6 +60,7 @@ const NavBar = () => {
           </button>
         </div>
       </header>
+      
     </>
   );
 };

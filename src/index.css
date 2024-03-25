@@ -1,3 +1,74 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  /* Global CSS file like src/index.css */
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes fadeInDown {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes fadeInLeft {
+    from {
+      opacity: 0;
+      transform: translateX(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+  .fadeInUp {
+    animation: fadeInUp 1s ease-out forwards;
+  }
+  
+  .fadeInDown {
+    animation: fadeInDown 1s ease-out forwards;
+  }
+  
+  .fadeInLeft {
+    animation: fadeInLeft 1s ease-out forwards;
+  }
+  
+  /* Example classes for different durations and delays */
+  .animation-fast {
+    animation-duration: 0.5s;
+  }
+  
+  .animation-slow {
+    animation-duration: 3s;
+  }
+  
+  .animation-delay-1s {
+    animation-delay: 2s;
+  }
+  
+  .animation-delay-2s {
+    animation-delay: 2s;
+  }
+  

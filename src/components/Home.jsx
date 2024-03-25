@@ -39,7 +39,6 @@ const Home = () => {
           </div>
         </section>
       </main>
-      {/* Insert more components or content sections here as needed */}
     </div>
   );
 };
