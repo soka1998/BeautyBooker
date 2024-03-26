@@ -14,7 +14,9 @@ import Pricing from "./components/Pricing";
 function App() {
   return (
    <Router>
-     <div
+    <NavBar/>
+     
+    <div
       style={{
         backgroundImage: `url(${background})`,
         backgroundSize: "cover",
@@ -23,8 +25,8 @@ function App() {
         minHeight: "100vh",
       }}
     >
-     <NavBar/>
      <Home/>
+
      <Services/>
      <Pricing/>
      <AboutUs/>

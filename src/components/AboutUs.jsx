@@ -3,7 +3,7 @@ import image from "../assets/aboutimg.jpg"; // Adjust the path as necessary
 
 const AboutUs = () => {
   return (
-    <section className="container mx-auto px-4 py-10 animate-fadeIn">
+    <section className="container mx-auto px-4 py-10 animate-fadeIn" id="about">
       <h2 className="text-5xl md:text-6xl font-bold text-center my-10 text-pink-500 animate-pulse" style={{ fontFamily: "'Great Vibes', cursive" }}>
         About Us
       </h2>
