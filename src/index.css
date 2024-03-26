@@ -71,4 +71,27 @@
   .animation-delay-2s {
     animation-delay: 2s;
   }
+  @layer utilities {
+    .animate-fade-in-up {
+      @apply opacity-0 transform translate-y-10;
+      animation: fade-in-up 1s ease-out forwards;
+    }
+    .animate-pop-in {
+      @apply scale-95 opacity-0;
+      animation: pop-in 0.5s ease-out forwards;
+    }
+    @keyframes fade-in-up {
+      to {
+        @apply opacity-100 transform translate-y-0;
+      }
+    }
+    @keyframes pop-in {
+      50% {
+        @apply scale-110;
+      }
+      100% {
+        @apply scale-100 opacity-100;
+      }
+    }
+  }
   
