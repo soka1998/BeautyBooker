@@ -8,6 +8,7 @@ import background from './assets/background.png';
 import { BrowserRouter as Router } from 'react-router-dom';
 import AboutUs from "./components/AboutUs";
 import Pricing from "./components/Pricing";
+import Footer from "./components/Footer";
 
 
 
@@ -30,6 +31,7 @@ function App() {
      <Services/>
      <Pricing/>
      <AboutUs/>
+     <Footer/>
      </div>
     
   
