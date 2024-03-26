@@ -75,17 +75,5 @@ function Footer() {
   );
 }
 
-function MyComponent() {
-  return (
-    <div>
-      <Header />
-      <main>
-        <Hero />
-        <Features />
-      </main>
-      <Footer />
-    </div>
-  );
-}
 
 export default MyComponent;

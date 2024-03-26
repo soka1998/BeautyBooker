@@ -1,19 +1,20 @@
 
 import "./App.css";
-import HeroPage from "./components/HeroPage";
+
 import NavBar from "./components/NavBar";
 import Services from "./components/Services";
 import Home from "./components/Home"
 import background from './assets/background.png';
 import { BrowserRouter as Router } from 'react-router-dom';
 import AboutUs from "./components/AboutUs";
+import Pricing from "./components/Pricing";
 
 
 
 function App() {
   return (
    <Router>
-    <div
+     <div
       style={{
         backgroundImage: `url(${background})`,
         backgroundSize: "cover",
@@ -25,9 +26,10 @@ function App() {
      <NavBar/>
      <Home/>
      <Services/>
+     <Pricing/>
      <AboutUs/>
      </div>
-     {/* <HeroPage/> */}
+    
   
     </Router>
   );

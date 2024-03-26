@@ -15,9 +15,11 @@ const Services = () => {
   const imageClass = "object-contain mb-4 rounded-lg h-64 w-full"; // This class will make sure all images fit within a consistent size
 
   return (
-    <section id="services" className="py-20 lg:pb-40 lg:pt-48">
-      <div className="container mx-auto text-center">
-        <h2 style={titleStyle} className="text-5xl md:text-6xl font-bold text-center my-10 text-gray-800">Our Services</h2>
+    <section id="services" className="py-20 lg:pb-40 lg:pt-48 animate-fadeIn">
+    <div className="container mx-auto text-center">
+      <h2 style={titleStyle} className="text-5xl md:text-6xl font-bold text-pink-500 animate-pulse">
+        Our Services
+      </h2>
         <div className="flex flex-col sm:flex-row sm:-mx-3 mt-12">
           {/* Service 1 */}
           <div className="flex-1 px-3">
