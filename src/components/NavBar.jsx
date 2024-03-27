@@ -1,8 +1,13 @@
 import React from "react";
 import logo from "../assets/logo.jpeg"; // Make sure the path is correct relative to this file
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const NavBar = () => {
+  let navigate = useNavigate();
+
+  const handleContactClick = () => {
+    navigate('/contact'); // This will navigate to the Contact page
+  };
     const scrollToBottom = (sectionID) => {
         const element = document.getElementById(sectionID);
         if (element) {
@@ -48,12 +53,15 @@ const NavBar = () => {
                 </Link>
               </li>
               <li>
+              <nav className="flex-1">
               <Link to={"/contact"}
+              
                   className="text-white hover:text-pink-300"
-                onClick={() => scrollToBottom("contact")}
+                  onClick={handleContactClick} 
                 >
                   Contact
                 </Link>
+                </nav>
               </li>
             </ul>
           </nav>
