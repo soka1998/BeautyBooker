@@ -10,6 +10,7 @@ import Pricing from "./components/Pricing";
 import ContactForm from "./components/ContactForm";
 import Footer from "./components/Footer";
 import background from './assets/background.png';
+import HeroPage from "./components/HeroPage";
 
 function App() {
   return (
@@ -28,17 +29,16 @@ function App() {
         
         {/* Routes for each page */}
         <Routes>
-          <Route path="/" element={<Home />} />
+
+          <Route path="/" element={<HeroPage />} />
           <Route path="/services" element={<Services />} />
           <Route path="/pricing" element={<Pricing />} />
           <Route path="/about" element={<AboutUs />} />
           <Route path="/contact" element={<ContactForm />} />
         </Routes>
-        <Home />
-        <Services />
-        <Pricing />
-        <AboutUs />
-        <Footer />
+        <Footer/>
+        
+        
       </div>
     </Router>
   );
