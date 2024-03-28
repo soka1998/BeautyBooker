@@ -26,6 +26,20 @@ const staffSchema = new Schema({
     // Optional: Validate phone number format if required
     match: [/^\+[1-9]\d{1,14}$/, 'Please fill a valid international phone number'], // Example regex for international phone numbers
   },
+  availability: [{
+    date: {
+      type: Date,
+      required: true
+    },
+    slots: [{
+      startTime: String, // Example: "09:00"
+      endTime: String, // Example: "17:00"
+      isBooked: {
+        type: Boolean,
+        default: false
+      }
+    }]
+  }],
   // userid
   userId: [{
     type: mongoose.Schema.Types.ObjectId,
@@ -33,7 +47,8 @@ const staffSchema = new Schema({
     required: [true, 'User ID is required'],
     unique: true,
 
-  }]
+  }],
+
 });
 
 const Staff = mongoose.model('Staff', staffSchema);
