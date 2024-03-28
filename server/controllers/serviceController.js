@@ -75,6 +75,34 @@ export const deleteService = async (req, res) => {
         res.status(400).json({ error: err.message });
     }
 };
+// Add availability to a service
+export const addServiceAvailability = async (req, res) => {
+    const { serviceId } = req.params; // Extract service ID from request parameters
+    const { availabilityDate, timeSlots } = req.body; // Extract availability date and time slots from request body
+
+    try {
+        const service = await Service.findById(serviceId); // Find the service by ID
+        if (!service) {
+            return res.status(404).json({ message: "Service not found" }); // Service not found
+        }
+
+        // Check if the availability date already exists
+        const existingAvailability = service.availability.find(a => a.date.toISOString().split('T')[0] === new Date(availabilityDate).toISOString().split('T')[0]);
+
+        if (existingAvailability) {
+            // Add new time slots to existing date
+            existingAvailability.timeSlots.push(...timeSlots);
+        } else {
+            // Add new availability date with time slots
+            service.availability.push({ date: availabilityDate, timeSlots });
+        }
+
+        await service.save(); // Save the updated service
+        res.status(200).json({ message: "Availability added successfully", service });
+    } catch (err) {
+        res.status(400).json({ error: err.message }); // Handle errors
+    }
+};
 
 
 //Final Notes

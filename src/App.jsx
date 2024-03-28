@@ -11,6 +11,7 @@ import ContactForm from "./components/ContactForm";
 import Footer from "./components/Footer";
 import background from './assets/background.png';
 import HeroPage from "./components/HeroPage";
+import Appointment from "./components/Appointments";
 
 function App() {
   return (
@@ -35,9 +36,10 @@ function App() {
           <Route path="/pricing" element={<Pricing />} />
           <Route path="/about" element={<AboutUs />} />
           <Route path="/contact" element={<ContactForm />} />
+          <Route path="/appointment" element={<Appointment />} />
         </Routes>
         <Footer/>
-        
+
         
       </div>
     </Router>
