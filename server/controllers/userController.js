@@ -1,7 +1,7 @@
 import User from "../models/User.js";
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
-import dotenv  from 'dotenv';
+import dotenv from 'dotenv';
 import validator from 'validator';
 
 
@@ -36,18 +36,16 @@ const handleErrors = (err) => {
 // Function to generate JWT
 const generateToken = (userId) => {
     return jwt.sign({ id: userId }, process.env.SECRET_KEY, { expiresIn: '24h' });
-  }; 
+};
 
 export const registerUser = async (req, res) => {
     const { name, email, password, role, phone } = req.body;
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
-// Manual password length validation
-if (password.length < 5) {
-    return res.status(400).json({ errors: { password: 'Password must be at least 5 characters long' } });
-}
-
-  
+    // Manual password length validation
+    if (password.length < 5) {
+        return res.status(400).json({ errors: { password: 'Password must be at least 5 characters long' } });
+    }
 
 
     try {
@@ -63,10 +61,10 @@ if (password.length < 5) {
 
 export const loginUser = async (req, res) => {
     const { email, password } = req.body;
-// Check for an empty password or email
-if (!email || !password) {
-    return res.status(400).json({ msg: 'Please provide an email and password' });
-}
+    // Check for an empty password or email
+    if (!email || !password) {
+        return res.status(400).json({ msg: 'Please provide an email and password' });
+    }
     try {
         const user = await User.findOne({ email });
         if (!user) {

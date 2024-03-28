@@ -1,5 +1,5 @@
 import Appointment from "../models/Appointment.js";
-
+import Service from "../models/Service.js";
 // Enhanced error handler for appointments
 const handleErrors = (err) => {
     let errors = {};
@@ -23,26 +23,43 @@ const handleErrors = (err) => {
 
     return errors;
 };
-
-// Book an appointment
+// Book an appointment with updated logic for checking service availability
 export const bookAppointment = async (req, res) => {
     const { date, time, userId, serviceId, staffId } = req.body;
     try {
+        // Find the service by ID to check availability
+        const service = await Service.findById(serviceId);
+        if (!service) {
+            return res.status(404).json({ message: "Service not found" });
+        }
+
+        // Check if the requested date and time slot is available
+        const availability = service.availability.find(a => a.date.toISOString().split('T')[0] === new Date(date).toISOString().split('T')[0]);
+        if (!availability || !availability.timeSlots.some(slot => slot.time === time && !slot.isBooked)) {
+            return res.status(400).json({ message: "Requested time slot is not available" });
+        }
+
+        // Mark the time slot as booked
+        const timeSlotIndex = availability.timeSlots.findIndex(slot => slot.time === time);
+        availability.timeSlots[timeSlotIndex].isBooked = true;
+        await service.save();
+
+        // Proceed with creating the appointment
         const newAppointment = await Appointment.create({
             date,
             time,
             userId,
             serviceId,
             staffId,
-            status: "Booked", // Assume initial status is always "Booked"
+            status: "Booked", // Assume initial status is "Booked"
         });
+
         res.status(201).json(newAppointment);
     } catch (err) {
         const errors = handleErrors(err);
         res.status(400).json({ errors });
     }
 };
-
 // Cancel an appointment
 export const cancelAppointment = async (req, res) => {
     const { appointmentId } = req.params;

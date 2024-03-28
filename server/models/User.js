@@ -23,7 +23,7 @@ const userSchema = new mongoose.Schema({
   role: { 
     type: String, 
     enum: {
-      values: ['admin', 'user', 'staff'], // Ensure these values are lowercase if `lowercase: true` is set
+      values: ['admin', 'customer', 'staff'], // Ensure these values are lowercase if `lowercase: true` is set
       message: '{VALUE} is not a supported role'
     },
     required: [true, 'Role is required'],

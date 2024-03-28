@@ -1,5 +1,5 @@
 import React from "react";
-import logo from "../assets/logo.jpeg"; // Make sure the path is correct relative to this file
+import logo from "../assets/logo.png"; // Make sure the path is correct relative to this file
 import { Link, useNavigate } from "react-router-dom";
 
 const NavBar = () => {
@@ -19,7 +19,7 @@ const NavBar = () => {
       <header>
         <div className="w-full flex flex-col sm:flex-row justify-between items-center mx-auto py-4 px-8 fixed top-0 bg-gray-800 bg-opacity-50 backdrop-filter backdrop-blur-lg z-50">
           <div className="flex items-center text-2xl">
-            <img src={logo} alt="Logo" className="w-12 mr-3" />
+            <img src={logo} alt="Logo" className="h-16 w-32 mr-3"  />
             {/* Logo and company name here */}
           </div>
           <nav className="flex-1">
@@ -65,14 +65,14 @@ const NavBar = () => {
               </li>
             </ul>
           </nav>
-          <button
+          <Link to="/appointment"
             type="button"
             className="w-40 h-12 bg-white cursor-pointer rounded-3xl border-2 border-[#eaa2ed] shadow-[inset_0px_-2px_0px_1px_#9748FF] group hover:bg-[#d5a6cc] transition duration-300 ease-in-out"
           >
             <span className="font-medium text-gray-800 group-hover:text-white">
               Book Now
             </span>
-          </button>
+          </Link>
         </div>
       </header>
     </>
